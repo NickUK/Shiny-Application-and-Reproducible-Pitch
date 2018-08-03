@@ -20,10 +20,12 @@ shinyServer(function(input, output) {
     ggplot(data=subset, aes(x=sex, fill=passengerClass)) + geom_bar() + labs(y="Survived", x="Gender", fill="Class")
   })
   output$result <- renderText({
-    fit <- lm(survived ~ ., data=TitanicSurvival)
+    tm <- TitanicSurvival
+    tm$survived <- as.numeric(tm$survived) - 1
+    fit <- lm(survived ~ ., data=tm)
     
     prediction <- predict(fit, newdata = data.frame(sex=input$gender, age=input$age, passengerClass=input$class))
-    prediction <- min(round(prediction * 100, digits=2), 100)
+    prediction <- max(min(round(prediction * 100, digits=2), 100), 0)
     prediction
   })
 })

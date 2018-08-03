@@ -1,0 +1,62 @@
+Course Project: Shiny Application and Reproducible Pitch
+========================================================
+author: Nick Horne
+date: 3rd August 2018
+autosize: true
+
+```{r echo=FALSE}
+library(carData)
+library(ggplot2)
+```
+
+Introduction
+========================================================
+
+This presentation is for the Coursera Shiny Application and Reproducible Pitch assignement.
+
+Source code for this project can be found here:
+<https://github.com/NickUK/Shiny-Application-and-Reproducible-Pitch>
+
+The following graph shows the survival for male and females of different classes.
+
+```{r}
+subset <- TitanicSurvival[TitanicSurvival$survived == "yes",]
+    
+ggplot(data=subset, aes(x=sex, fill=passengerClass)) + geom_bar() + labs(y="Survived", x="Gender", fill="Class")
+```
+
+Dataset
+========================================================
+
+I used the TitanicSurvival dataset from the `carData` library. 
+
+```{r}
+
+summary(TitanicSurvival)
+str(TitanicSurvival)
+```
+
+Application
+========================================================
+
+The app I produced can be found here: 
+<https://nickuk.shinyapps.io/Shiny-Application-and-Reproducible-Pitch/>
+
+You can choose the following: 
+
+1. gender
+2. age 
+3. class 
+
+The web application will  predict your survival chance based on a simple linear model built on the dataset.
+
+Summary
+========================================================
+
+The R presentations and shiny applications are both a great way of sharing your findings.
+
+You can find out more about both here:
+
+R Presentations: <https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations>
+
+Shiny: <https://shiny.rstudio.com/>
